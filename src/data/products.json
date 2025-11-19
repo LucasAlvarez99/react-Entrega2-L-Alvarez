@@ -7,9 +7,9 @@
     "date": "2025-03-15",
     "venue": "Estadio Monumental",
     "images": [
-      "/images/metallica1.jpg",
-      "/images/metallica2.jpg",
-      "/images/metallica3.jpg"
+      "/images/metalica-entrada.png",
+      "/images/metalica-remera.png",
+      "/images/metalica-disco.png"
     ],
     "spaces": [
       {
@@ -73,9 +73,9 @@
     "date": "2025-04-20",
     "venue": "Estadio River Plate",
     "images": [
-      "/images/acdc1.jpg",
-      "/images/acdc2.jpg",
-      "/images/acdc3.jpg"
+      "/images/acdc-entrada.png",
+      "/images/acdc-remera.png",
+      "/images/acdc-disco.png"
     ],
     "spaces": [
       {
@@ -133,9 +133,8 @@
     "date": "2025-05-10",
     "venue": "Teatro Colón",
     "images": [
-      "/images/sylvania1.jpg",
-      "/images/sylvania2.jpg",
-      "/images/sylvania3.jpg"
+      "/images/sylvania-entrada.png",
+      "/images/sylvania-disco.png"
     ],
     "spaces": [
       {
