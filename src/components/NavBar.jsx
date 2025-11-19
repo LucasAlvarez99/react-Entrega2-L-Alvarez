@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -19,7 +20,7 @@ function NavBar() {
     >
       <Container>
         {/* LOGO */}
-        <Navbar.Brand href="#" className="d-flex align-items-center">
+        <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <img
             src="/logoTicket.png"
             alt="Logo"
@@ -38,7 +39,7 @@ function NavBar() {
         {/* LINKS */}
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto align-items-lg-center">
-            <Nav.Link href="#" onClick={() => setExpanded(false)}>
+            <Nav.Link as={Link} to="/" onClick={() => setExpanded(false)}>
               Inicio
             </Nav.Link>
 
@@ -48,18 +49,36 @@ function NavBar() {
               menuVariant="dark"
               onClick={(e) => e.stopPropagation()}
             >
-              <NavDropdown.Item href="#">Metallica</NavDropdown.Item>
-              <NavDropdown.Item href="#">AC/DC</NavDropdown.Item>
-              <NavDropdown.Item href="#">Sylvania</NavDropdown.Item>
-              <NavDropdown.Item href="#">Linkin Park</NavDropdown.Item>
-              <NavDropdown.Item href="#">Mago de Oz</NavDropdown.Item>
-              <NavDropdown.Item href="#">Feuerschwanz</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/category/metallica">
+                Metallica
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/category/acdc">
+                AC/DC
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/category/sylvania">
+                Sylvania
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/category/linkin-park">
+                Linkin Park
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/category/mago-de-oz">
+                Mago de Oz
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/category/feuerschwanz">
+                Feuerschwanz
+              </NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#">Ver todos</NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/">
+                Ver todos
+              </NavDropdown.Item>
             </NavDropdown>
 
-            <Nav.Link href="#" onClick={() => setExpanded(false)}>
+            <Nav.Link as={Link} to="/contacto" onClick={() => setExpanded(false)}>
               Contacto
+            </Nav.Link>
+
+            <Nav.Link as={Link} to="/admin" onClick={() => setExpanded(false)}>
+              Admin
             </Nav.Link>
 
             <div className="ms-lg-3 mt-3 mt-lg-0">

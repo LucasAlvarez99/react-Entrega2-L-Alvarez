@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -22,19 +23,24 @@ function Footer() {
             <h6 className="text-info fw-semibold mb-2">Enlaces</h6>
             <ul className="list-unstyled mb-0">
               <li>
-                <a href="#" className="footer-link">
+                <Link to="/" className="footer-link">
                   Inicio
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="footer-link">
+                <Link to="/" className="footer-link">
                   Productos
-                </a>
+                </Link>
               </li>
               <li>
-                <a href="#" className="footer-link">
+                <Link to="/contacto" className="footer-link">
                   Contacto
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link to="/admin" className="footer-link">
+                  Admin
+                </Link>
               </li>
             </ul>
           </Col>
@@ -43,13 +49,28 @@ function Footer() {
           <Col md={4}>
             <h6 className="text-info fw-semibold mb-2">Seguinos</h6>
             <div className="d-flex justify-content-center justify-content-md-start gap-3">
-              <a href="https://www.facebook.com/lucas.alvarez.330309/" className="social-icon">
+              <a
+                href="https://www.facebook.com/lucas.alvarez.330309/"
+                className="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-facebook-f"></i>
               </a>
-              <a href="https://www.instagram.com/el_mago_lucas/" className="social-icon">
+              <a
+                href="https://www.instagram.com/el_mago_lucas/"
+                className="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="https://www.linkedin.com/in/lucas-alvarez-bernardez/?skipRedirect=true" className="social-icon">
+              <a
+                href="https://www.linkedin.com/in/lucas-alvarez-bernardez/?skipRedirect=true"
+                className="social-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fab fa-linkedin"></i>
               </a>
             </div>
