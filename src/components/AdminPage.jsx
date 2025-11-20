@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -7,8 +8,11 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Alert from "react-bootstrap/Alert";
 import Table from "react-bootstrap/Table";
+import { addProduct } from "../services/productsService";
 
 function AdminPage() {
+  const navigate = useNavigate();
+  
   const [showForm, setShowForm] = useState({
     title: "",
     artist: "",
@@ -65,6 +69,7 @@ function AdminPage() {
     setPreviewImages(imageUrls);
 
     // En producción, aquí subirías las imágenes a un servidor
+    // Por ahora usamos las URLs temporales
     setShowForm({
       ...showForm,
       images: imageUrls,
@@ -99,32 +104,36 @@ function AdminPage() {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Preparar datos para guardar
-    const newShow = {
-      id: Date.now().toString(),
-      type: "show",
-      ...showForm,
-      spaces: showForm.spaces.map((space) => ({
-        ...space,
-        price: Number(space.price),
-        stock: Number(space.stock),
-      })),
-    };
+    try {
+      // Preparar datos para guardar
+      const newShow = {
+        ...showForm,
+        spaces: showForm.spaces.map((space) => ({
+          ...space,
+          price: Number(space.price),
+          stock: Number(space.stock),
+        })),
+      };
 
-    console.log("Nuevo show creado:", newShow);
-    
-    // Aquí guardarías en el JSON o base de datos
-    // En este ejemplo, lo mostramos en consola y alert
-    
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      // Resetear formulario
-      window.location.reload();
-    }, 3000);
+      // Guardar en localStorage
+      const savedProduct = await addProduct(newShow);
+      
+      console.log("Show creado exitosamente:", savedProduct);
+      
+      setSubmitted(true);
+      
+      // Redirigir al inicio después de 2 segundos
+      setTimeout(() => {
+        navigate("/");
+      }, 2000);
+      
+    } catch (error) {
+      console.error("Error al crear show:", error);
+      alert("Error al crear el show. Por favor intenta de nuevo.");
+    }
   };
 
   return (
@@ -137,7 +146,7 @@ function AdminPage() {
       {submitted && (
         <Alert variant="success" className="mb-4">
           <Alert.Heading>¡Show creado exitosamente!</Alert.Heading>
-          <p>El show ha sido agregado al catálogo.</p>
+          <p>El show ha sido agregado al catálogo. Redirigiendo al inicio...</p>
         </Alert>
       )}
 
@@ -362,6 +371,7 @@ function AdminPage() {
                   variant="success"
                   onClick={handleAddMerchandise}
                   className="w-100"
+                  type="button"
                 >
                   Agregar
                 </Button>
@@ -389,6 +399,7 @@ function AdminPage() {
                           variant="danger"
                           size="sm"
                           onClick={() => handleRemoveMerchandise(index)}
+                          type="button"
                         >
                           Eliminar
                         </Button>
@@ -403,8 +414,14 @@ function AdminPage() {
 
         {/* BOTÓN SUBMIT */}
         <div className="text-center">
-          <Button variant="primary" type="submit" size="lg" className="px-5">
-            Crear Show
+          <Button 
+            variant="primary" 
+            type="submit" 
+            size="lg" 
+            className="px-5"
+            disabled={submitted}
+          >
+            {submitted ? "Creando..." : "Crear Show"}
           </Button>
         </div>
       </Form>

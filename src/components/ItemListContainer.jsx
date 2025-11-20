@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemList from "./ItemList";
-import productsData from "../data/products.json";
+import { getProducts, getProductsByCategory } from "../services/productsService";
 import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 
@@ -13,24 +13,23 @@ function ItemListContainer({ greeting }) {
   useEffect(() => {
     setLoading(true);
 
-    // Simulamos una llamada asíncrona con Promise
-    const getProducts = new Promise((resolve) => {
-      setTimeout(() => {
-        resolve(productsData);
-      }, 1000);
-    });
-
-    getProducts.then((data) => {
-      if (categoryId) {
-        const filteredProducts = data.filter(
-          (product) => product.category === categoryId
-        );
-        setProducts(filteredProducts);
-      } else {
+    const fetchProducts = async () => {
+      try {
+        let data;
+        if (categoryId) {
+          data = await getProductsByCategory(categoryId);
+        } else {
+          data = await getProducts();
+        }
         setProducts(data);
+      } catch (error) {
+        console.error("Error al cargar productos:", error);
+      } finally {
+        setLoading(false);
       }
-      setLoading(false);
-    });
+    };
+
+    fetchProducts();
   }, [categoryId]);
 
   return (

@@ -77,9 +77,18 @@ function NavBar() {
               Contacto
             </Nav.Link>
 
-            <Nav.Link as={Link} to="/admin" onClick={() => setExpanded(false)}>
-              Admin
-            </Nav.Link>
+            <NavDropdown
+              title="Admin"
+              id="admin-dropdown"
+              menuVariant="dark"
+            >
+              <NavDropdown.Item as={Link} to="/admin">
+                Crear Show
+              </NavDropdown.Item>
+              <NavDropdown.Item as={Link} to="/admin/manage">
+                Gestionar Shows
+              </NavDropdown.Item>
+            </NavDropdown>
 
             <div className="ms-lg-3 mt-3 mt-lg-0">
               <CartWidget />
