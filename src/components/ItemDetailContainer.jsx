@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import ItemDetail from "./ItemDetail";
-import productsData from "../data/products.json";
+import { getProductById } from "../services/productsService";
 import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 import Alert from "react-bootstrap/Alert";
@@ -14,27 +14,19 @@ function ItemDetailContainer() {
   useEffect(() => {
     setLoading(true);
 
-    // Simulamos una llamada asíncrona con Promise
-    const getProduct = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        const foundProduct = productsData.find((p) => p.id === itemId);
-        if (foundProduct) {
-          resolve(foundProduct);
-        } else {
-          reject(new Error("Producto no encontrado"));
-        }
-      }, 1000);
-    });
-
-    getProduct
-      .then((data) => {
+    const fetchProduct = async () => {
+      try {
+        const data = await getProductById(itemId);
         setProduct(data);
+      } catch (error) {
+        console.error("Error al cargar producto:", error);
+        setProduct(null);
+      } finally {
         setLoading(false);
-      })
-      .catch((error) => {
-        console.error(error);
-        setLoading(false);
-      });
+      }
+    };
+
+    fetchProduct();
   }, [itemId]);
 
   if (loading) {

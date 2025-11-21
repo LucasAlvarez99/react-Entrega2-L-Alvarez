@@ -19,7 +19,6 @@ function NavBar() {
       expanded={expanded}
     >
       <Container>
-        {/* LOGO */}
         <Navbar.Brand as={Link} to="/" className="d-flex align-items-center">
           <img
             src="/logoTicket.png"
@@ -30,13 +29,11 @@ function NavBar() {
           <span className="fw-bold navbar-title">Las Puertas del Olimpo</span>
         </Navbar.Brand>
 
-        {/* TOGGLE BUTTON */}
         <Navbar.Toggle
           aria-controls="navbar-nav"
           onClick={() => setExpanded(expanded ? false : "expanded")}
         />
 
-        {/* LINKS */}
         <Navbar.Collapse id="navbar-nav">
           <Nav className="ms-auto align-items-lg-center">
             <Nav.Link as={Link} to="/" onClick={() => setExpanded(false)}>

@@ -9,7 +9,6 @@ function Footer() {
     <footer className="footer-bootstrap mt-auto py-4">
       <Container>
         <Row className="gy-4 text-center text-md-start">
-          {/* SECCIÓN 1 */}
           <Col md={4}>
             <h5 className="text-info fw-bold">Las Puertas del Olimpo</h5>
             <p className="text-muted mb-0">
@@ -18,7 +17,6 @@ function Footer() {
             </p>
           </Col>
 
-          {/* SECCIÓN 2 */}
           <Col md={4}>
             <h6 className="text-info fw-semibold mb-2">Enlaces</h6>
             <ul className="list-unstyled mb-0">
@@ -45,7 +43,6 @@ function Footer() {
             </ul>
           </Col>
 
-          {/* SECCIÓN 3 */}
           <Col md={4}>
             <h6 className="text-info fw-semibold mb-2">Seguinos</h6>
             <div className="d-flex justify-content-center justify-content-md-start gap-3">

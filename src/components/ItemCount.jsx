@@ -21,6 +21,7 @@ function ItemCount({ stock, initial, onAdd }) {
   const handleAdd = () => {
     if (count > 0 && count <= stock) {
       onAdd(count);
+      setCount(initial);
     }
   };
 
